@@ -92,7 +92,7 @@ function DashboardPage() {
 
             <div className="overview-item">
               <span>Backend</span>
-              <strong>Node.js + Express</strong>
+              <strong>NestJS Microservices</strong>
             </div>
 
             <div className="overview-item">
@@ -102,7 +102,7 @@ function DashboardPage() {
 
             <div className="overview-item">
               <span>Architecture</span>
-              <strong>Microservices</strong>
+              <strong>Microservices + API Gateway</strong>
             </div>
           </div>
         </div>

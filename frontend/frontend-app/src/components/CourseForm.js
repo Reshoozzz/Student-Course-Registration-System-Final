@@ -20,8 +20,8 @@ function CourseForm({
   useEffect(() => {
     if (editingCourse) {
       setFormData({
-        courseCode: editingCourse.courseCode || "",
-        courseName: editingCourse.courseName || "",
+        courseCode: editingCourse.code || "",
+        courseName: editingCourse.name || "",
         instructor: editingCourse.instructor || "",
         creditHours: editingCourse.creditHours || "",
         department: editingCourse.department || "",
@@ -60,36 +60,46 @@ function CourseForm({
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (!validateForm()) return;
+  if (!validateForm()) return;
 
-    try {
-      if (editingCourse) {
-        await updateCourse(editingCourse._id, formData);
-        showMessage("success", "Course updated successfully.");
-        clearEditingCourse();
-      } else {
-        await createCourse(formData);
-        showMessage("success", "Course added successfully.");
-      }
-
-      setFormData({
-        courseCode: "",
-        courseName: "",
-        instructor: "",
-        creditHours: "",
-        department: "",
-        capacity: "",
-        schedule: "",
-      });
-
-      refreshCourses();
-    } catch (error) {
-      console.error("Error saving course:", error);
-      showMessage("error", error.response?.data?.message || "Failed to save course.");
-    }
+  const courseData = {
+    code: formData.courseCode,
+    name: formData.courseName,
+    instructor: formData.instructor,
+    creditHours: Number(formData.creditHours),
+    department: formData.department,
+    capacity: Number(formData.capacity),
+    schedule: formData.schedule,
   };
+
+  try {
+    if (editingCourse) {
+      await updateCourse(editingCourse._id, courseData);
+      showMessage("success", "Course updated successfully.");
+      clearEditingCourse();
+    } else {
+      await createCourse(courseData);
+      showMessage("success", "Course added successfully.");
+    }
+
+    setFormData({
+      courseCode: "",
+      courseName: "",
+      instructor: "",
+      creditHours: "",
+      department: "",
+      capacity: "",
+      schedule: "",
+    });
+
+    refreshCourses();
+  } catch (error) {
+    console.error("Error saving course:", error);
+    showMessage("error", error.response?.data?.message || "Failed to save course.");
+  }
+};
 
   return (
     <div className="card">

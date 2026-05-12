@@ -46,7 +46,7 @@ function RegistrationsPage() {
   const filteredRegistrations = registrations.filter((reg) => {
     const matchesStatus = statusFilter ? reg.status === statusFilter : true;
     const matchesSemester = semesterFilter
-      ? reg.semester.toLowerCase().includes(semesterFilter.toLowerCase())
+      ? (reg.semester || "").toLowerCase().includes(semesterFilter.toLowerCase())
       : true;
 
     return matchesStatus && matchesSemester;

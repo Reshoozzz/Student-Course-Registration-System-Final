@@ -39,7 +39,7 @@ function StudentsPage() {
   };
 
   const filteredStudents = students.filter((student) =>
-    student.name.toLowerCase().includes(searchTerm.toLowerCase())
+    (student.name || "").toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (

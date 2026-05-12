@@ -29,8 +29,8 @@ function CourseList({ courses, refreshCourses, setEditingCourse, showMessage }) 
     <>
       {courses.map((course) => (
         <div key={course._id} className="list-card">
-          <p><strong>Course Code:</strong> {course.courseCode}</p>
-          <p><strong>Course Name:</strong> {course.courseName}</p>
+          <p><strong>Course Code:</strong> {course.code}</p>
+          <p><strong>Course Name:</strong> {course.name}</p>
           <p><strong>Instructor:</strong> {course.instructor}</p>
           <p><strong>Credit Hours:</strong> {course.creditHours}</p>
           <p><strong>Department:</strong> {course.department}</p>

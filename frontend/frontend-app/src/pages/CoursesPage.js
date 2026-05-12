@@ -38,11 +38,10 @@ function CoursesPage() {
     }, 3000);
   };
 
-  const filteredCourses = courses.filter(
-    (course) =>
-      course.courseName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      course.courseCode.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredCourses = courses.filter((course) =>
+  (course.name || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
+  (course.code || "").toLowerCase().includes(searchTerm.toLowerCase())
+);
 
   return (
     <div className="page-container">
